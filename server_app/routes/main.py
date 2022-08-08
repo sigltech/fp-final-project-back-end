@@ -46,7 +46,8 @@ def user():
         user = User(
             username=request.json["username"],
             password=request.json["password"],
-            location=request.json["location"]
+            location=request.json["location"],
+            email=request.json["email"]
         )
         db.session.add(user)
         db.session.commit()
