@@ -3,6 +3,7 @@ from ..database.db import db
 from ..models.tables import Clothing, User, Offers, Messages
 
 main_routes = Blueprint("main", __name__)
+auth_routes = Blueprint("auth", __name__)
 
 
 # @main_routes.route("/")
@@ -37,7 +38,7 @@ def index():
     #     db.session.commit()
     #     return jsonify(clothing)
 
-@main_routes.route("/user", methods=["GET","POST"])
+@auth_routes.route('/users', methods=['GET'])
 def user():
     if request.method == "GET":
         all_user = User.query.all()
@@ -51,6 +52,7 @@ def user():
         )
         db.session.add(user)
         db.session.commit()
-        return jsonify(user)
+        return 'user added'
+
 
         
