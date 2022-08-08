@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from ..database.db import db
-from ..models.tables import Clothing
+from ..models.tables import Clothing, User, Offers, Messages
 
 main_routes = Blueprint("main", __name__)
 
@@ -37,4 +37,19 @@ def index():
     #     db.session.commit()
     #     return jsonify(clothing)
 
+@main_routes.route("/user", methods=["GET","POST"])
+def user():
+    if request.method == "GET":
+        all_user = User.query.all()
+        return jsonify(all_user)
+    else:
+        user = User(
+            username=request.json["username"],
+            password=request.json["password"],
+            location=request.json["location"]
+        )
+        db.session.add(user)
+        db.session.commit()
+        return jsonify(user)
 
+        
