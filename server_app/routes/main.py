@@ -21,7 +21,7 @@ def clothing():
         clothing = Clothing(
             name=request.json["name"],
             description=request.json["description"],
-            price=request.json["price"],
+            price=request.json["price"], 
             image=request.json["image"],
             user_id=request.json["user_id"]
         )
